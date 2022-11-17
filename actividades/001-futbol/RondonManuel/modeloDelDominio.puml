@@ -1,14 +1,19 @@
 @startuml
-class jugador
-class balon
-class equipo
-class arbitro
-class partido
-class contador
 
-jugador --* equipo : pertenece
-jugador --* balon : utiliza
-equipo --* partido : participa
-arbitro --* partido : regula
-contador --* partido: refleja
+
+Juego - Partido 
+Juego --* Evento
+Evento --o Irregularidad
+Evento --o Gol
+Evento . Reglas: valida <
+
+
+Partido --* Reglas
+Partido --* Equipo : es participe de <
+Partido --* Contador : refleja tiempo y puntaje 
+
+Equipo --* Jugador 
+Jugador --> Balon : utiliza
+
+Reglas <-- Arbitro  : aplica <
 @enduml
